@@ -24,7 +24,6 @@ namespace SliderPickerProjectWPF
         public static readonly DependencyProperty TitleProperty;
         public static readonly DependencyProperty SliderValueProperty;
         #endregion
-
         #region STATIC EVENTS
         public static readonly RoutedEvent TitleChangedEvent;
         public static readonly RoutedEvent SliderValueChangedEvent;
@@ -47,7 +46,6 @@ namespace SliderPickerProjectWPF
             InitializeComponent();
         }
         #endregion
-
         #region STATIC METHODS
         private static void OnSliderValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
@@ -71,7 +69,6 @@ namespace SliderPickerProjectWPF
             slider.RaiseEvent(args);
         }
         #endregion
-
         #region PROPERTIES
         public string Title
         {
@@ -85,7 +82,6 @@ namespace SliderPickerProjectWPF
             set => SetValue(SliderValueProperty, value);
         }
         #endregion
-
         #region EVENST
         public event RoutedPropertyChangedEventHandler<double> SliderValueChanged
         {

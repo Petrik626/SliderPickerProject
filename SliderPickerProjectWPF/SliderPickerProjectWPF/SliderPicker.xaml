@@ -5,8 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SliderPickerProjectWPF"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="50" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style x:Key="SliderStyle" TargetType="Slider">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="10,0,10,0"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Slider x:Name="ValueSlider" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource SliderStyle}" Value="{Binding ElementName=slider, Path=SliderValue}"></Slider>
     </Grid>
 </UserControl>
