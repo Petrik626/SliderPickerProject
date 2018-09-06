@@ -11,6 +11,11 @@
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
             <Setter Property="Margin" Value="10,0,10,0"></Setter>
         </Style>
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+        </Style>
     </UserControl.Resources>
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
@@ -22,6 +27,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Slider x:Name="ValueSlider" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource SliderStyle}" Value="{Binding ElementName=sliderpicker, Path=SliderValue}"></Slider>
+        <Slider x:Name="ValueSlider" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource SliderStyle}" Value="{Binding ElementName=sliderPicker, Path=SliderValue}" Minimum="0" Maximum="300"></Slider>
+        <TextBox x:Name="ContentSliderTextBox" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text="{Binding ContentSlider}"></TextBox>
     </Grid>
 </UserControl>

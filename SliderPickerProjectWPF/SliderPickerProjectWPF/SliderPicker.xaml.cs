@@ -55,35 +55,34 @@ namespace SliderPickerProjectWPF
         #region STATIC METHODS
         private static void OnSliderValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            SliderPicker sliderpicker = (SliderPicker)sender;
-
+            SliderPicker sliderPicker = (SliderPicker)sender;
             RoutedPropertyChangedEventArgs<double> args = new RoutedPropertyChangedEventArgs<double>((double)e.OldValue, (double)e.NewValue);
-            sliderpicker.SliderValue = (double)e.NewValue;
-            sliderpicker.ContentSlider = ((double)e.NewValue).ToString();
+            sliderPicker.SliderValue = (double)e.NewValue;
+            sliderPicker.ContentSlider = ((double)e.NewValue).ToString();
             args.RoutedEvent = SliderValueChangedEvent;
 
-            sliderpicker.RaiseEvent(args);
+            sliderPicker.RaiseEvent(args);
         }
 
         private static void OnTitleChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            SliderPicker sliderpicker = (SliderPicker)sender;
+            SliderPicker sliderPicker = (SliderPicker)sender;
 
             RoutedPropertyChangedEventArgs<string> args = new RoutedPropertyChangedEventArgs<string>(e.OldValue.ToString(), e.NewValue.ToString());
-            sliderpicker.Title = (string)e.NewValue;
+            sliderPicker.Title = (string)e.NewValue;
             args.RoutedEvent = TitleChangedEvent;
 
-            sliderpicker.RaiseEvent(args);
+            sliderPicker.RaiseEvent(args);
         }
 
         private static void OnContentSliderChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            SliderPicker sliderpicker = (SliderPicker)sender;
+            SliderPicker sliderPicker = (SliderPicker)sender;
             RoutedPropertyChangedEventArgs<string> args = new RoutedPropertyChangedEventArgs<string>(e.OldValue.ToString(), e.NewValue.ToString());
 
             args.RoutedEvent = ContentSliderChangedEvent;
-            sliderpicker.ContentSlider = (string)e.NewValue;
-            sliderpicker.RaiseEvent(args);
+            sliderPicker.ContentSlider = (string)e.NewValue;
+            sliderPicker.RaiseEvent(args);
         }
         #endregion
         #region PROPERTIES
