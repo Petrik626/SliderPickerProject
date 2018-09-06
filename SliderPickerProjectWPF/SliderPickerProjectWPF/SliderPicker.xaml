@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SliderPickerProjectWPF"
              mc:Ignorable="d" 
+             Name="sliderPicker"
              d:DesignHeight="50" d:DesignWidth="300">
     <UserControl.Resources>
         <Style x:Key="SliderStyle" TargetType="Slider">
@@ -17,7 +18,7 @@
             <Setter Property="FontWeight" Value="Bold"></Setter>
         </Style>
     </UserControl.Resources>
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -28,6 +29,6 @@
         </Grid.ColumnDefinitions>
 
         <Slider x:Name="ValueSlider" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource SliderStyle}" Value="{Binding ElementName=sliderPicker, Path=SliderValue}" Minimum="0" Maximum="300"></Slider>
-        <TextBox x:Name="ContentSliderTextBox" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text="{Binding ContentSlider}"></TextBox>
+        <TextBox x:Name="ContentSliderTextBox" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text="{Binding ElementName=sliderPicker, Path=ContentSlider}"></TextBox>
     </Grid>
 </UserControl>
