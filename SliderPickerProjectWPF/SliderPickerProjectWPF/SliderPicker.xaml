@@ -11,11 +11,14 @@
         <Style x:Key="SliderStyle" TargetType="Slider">
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
             <Setter Property="Margin" Value="10,0,10,0"></Setter>
+            <Setter Property="SelectionStart" Value="0"></Setter>
+            <Setter Property="IsSelectionRangeEnabled" Value="True"></Setter>
         </Style>
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
-            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontSize" Value="24"></Setter>
             <Setter Property="FontFamily" Value="Times New Roman"></Setter>
             <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
         </Style>
     </UserControl.Resources>
     <Grid ShowGridLines="False">
