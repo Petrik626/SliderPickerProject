@@ -22,6 +22,6 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Slider x:Name="ValueSlider" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource SliderStyle}" Value="{Binding ElementName=slider, Path=SliderValue}"></Slider>
+        <Slider x:Name="ValueSlider" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource SliderStyle}" Value="{Binding ElementName=sliderpicker, Path=SliderValue}"></Slider>
     </Grid>
 </UserControl>

@@ -23,22 +23,28 @@ namespace SliderPickerProjectWPF
         #region STATIC PROPERTIES
         public static readonly DependencyProperty TitleProperty;
         public static readonly DependencyProperty SliderValueProperty;
+        public static readonly DependencyProperty ContentSliderProperty;
         #endregion
         #region STATIC EVENTS
         public static readonly RoutedEvent TitleChangedEvent;
         public static readonly RoutedEvent SliderValueChangedEvent;
+        public static readonly RoutedEvent ContentSliderChangedEvent;
         #endregion
         #region CONSTRUCTORS
         static SliderPicker()
         {
             FrameworkPropertyMetadata titleMetadata = new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnTitleChanged);
             FrameworkPropertyMetadata sliderMetadata = new FrameworkPropertyMetadata(new double(), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSliderValueChanged);
+            FrameworkPropertyMetadata contentMetadata = new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnContentSliderChanged);
+
 
             TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(SliderPicker), titleMetadata);
             SliderValueProperty = DependencyProperty.Register("SliderValue", typeof(double), typeof(SliderPicker), sliderMetadata);
+            ContentSliderProperty = DependencyProperty.Register("ContentSlider", typeof(string), typeof(SliderPicker), contentMetadata);
 
             TitleChangedEvent = EventManager.RegisterRoutedEvent("TitleChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<string>), typeof(SliderPicker));
             SliderValueChangedEvent = EventManager.RegisterRoutedEvent("SliderValueChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<double>), typeof(SliderPicker));
+            ContentSliderChangedEvent = EventManager.RegisterRoutedEvent("ContentSliderChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<string>), typeof(SliderPicker));
         }
 
         public SliderPicker()
@@ -49,24 +55,35 @@ namespace SliderPickerProjectWPF
         #region STATIC METHODS
         private static void OnSliderValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            SliderPicker slider = (SliderPicker)sender;
+            SliderPicker sliderpicker = (SliderPicker)sender;
 
             RoutedPropertyChangedEventArgs<double> args = new RoutedPropertyChangedEventArgs<double>((double)e.OldValue, (double)e.NewValue);
-            slider.SliderValue = (double)e.NewValue;
+            sliderpicker.SliderValue = (double)e.NewValue;
+            sliderpicker.ContentSlider = ((double)e.NewValue).ToString();
             args.RoutedEvent = SliderValueChangedEvent;
 
-            slider.RaiseEvent(args);
+            sliderpicker.RaiseEvent(args);
         }
 
         private static void OnTitleChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            SliderPicker slider = (SliderPicker)sender;
+            SliderPicker sliderpicker = (SliderPicker)sender;
 
             RoutedPropertyChangedEventArgs<string> args = new RoutedPropertyChangedEventArgs<string>(e.OldValue.ToString(), e.NewValue.ToString());
-            slider.Title = (string)e.NewValue;
+            sliderpicker.Title = (string)e.NewValue;
             args.RoutedEvent = TitleChangedEvent;
 
-            slider.RaiseEvent(args);
+            sliderpicker.RaiseEvent(args);
+        }
+
+        private static void OnContentSliderChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            SliderPicker sliderpicker = (SliderPicker)sender;
+            RoutedPropertyChangedEventArgs<string> args = new RoutedPropertyChangedEventArgs<string>(e.OldValue.ToString(), e.NewValue.ToString());
+
+            args.RoutedEvent = ContentSliderChangedEvent;
+            sliderpicker.ContentSlider = (string)e.NewValue;
+            sliderpicker.RaiseEvent(args);
         }
         #endregion
         #region PROPERTIES
@@ -81,6 +98,12 @@ namespace SliderPickerProjectWPF
             get => (double)GetValue(SliderValueProperty);
             set => SetValue(SliderValueProperty, value);
         }
+
+        public string ContentSlider
+        {
+            get => (string)GetValue(ContentSliderProperty);
+            set => SetValue(ContentSliderProperty, value);
+        }
         #endregion
         #region EVENST
         public event RoutedPropertyChangedEventHandler<double> SliderValueChanged
@@ -93,6 +116,12 @@ namespace SliderPickerProjectWPF
         {
             add { AddHandler(TitleChangedEvent, value); }
             remove { RemoveHandler(TitleChangedEvent, value); }
+        }
+
+        public event RoutedPropertyChangedEventHandler<string> ContentSliderChanged
+        {
+            add { AddHandler(ContentSliderChangedEvent, value); }
+            remove { RemoveHandler(ContentSliderChangedEvent, value); }
         }
         #endregion
     }
